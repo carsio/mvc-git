@@ -10,6 +10,7 @@ class Init
 	function __construct()
 	{
 		$this->initRoutes();
+		$this->run($this->getUrl());
 	}
 
 	public function initRoutes()
@@ -17,6 +18,15 @@ class Init
 		$rota['home'] = array('route' => '/', 'controller' => 'index', 'action' => 'index');
 		$rota['empresa'] = array('route' => '/empresa', 'controller' => 'index', 'action' => 'empresa');
 		$this->setRoutes($rota);
+	}
+
+	public function run($url)
+	{
+		array_walk($this->routes, function($routes) use ($url){
+			if ($routes['route']==$url) {
+				echo "Encontrou";
+			}
+		});
 	}
 
 	public function setRoutes(array $ar)
